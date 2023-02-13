@@ -1,5 +1,6 @@
 import requests
 import os.path
+from dotenv import load_dotenv
 from pathlib import Path
 
 def get_image(filename, url):
@@ -20,7 +21,7 @@ def get_url_image():
     return list_links_images
 
 
-def fetch_spacex_all_launches(list_links_images, folder="many_images"):
+def fetch_spacex_all_launches(list_links_images, folder="images"):
     Path(folder).mkdir(parents=True, exist_ok=True)
     for number, link in enumerate(list_links_images):
         response = requests.get(link)
@@ -32,6 +33,7 @@ def fetch_spacex_all_launches(list_links_images, folder="many_images"):
     
 
 def main():
+    load_dotenv()
     Path("images").mkdir(parents=True, exist_ok=True)
   
     filename = "images/hubble.jpeg"

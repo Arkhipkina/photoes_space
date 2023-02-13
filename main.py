@@ -2,10 +2,11 @@ import requests
 import os
 import os.path
 import datetime
+from dotenv import load_dotenv
 from pathlib import Path
 from pprint import pprint
 
-def get_epic_image(api_key, folder="epic"):
+def get_epic_image(api_key, folder="images"):
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     params = {
         "api_key": api_key
@@ -35,7 +36,8 @@ def save_epic_image(url, file_path, params):
 
 
 def main():
-    Path("epic").mkdir(parents=True, exist_ok=True)
+    load_dotenv()
+    Path("images").mkdir(parents=True, exist_ok=True)
   
     api_nasa_key = os.environ["API_NASA_KEY"]
     get_epic_image(api_nasa_key)

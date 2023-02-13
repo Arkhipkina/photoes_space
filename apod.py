@@ -1,10 +1,12 @@
 import requests
 import os
 import os.path
+from dotenv import load_dotenv
+from pathlib import Path
 from urllib.parse import urlsplit, unquote
 
 
-def get_nasa_image(api_nasa_key, folder="day_images"):
+def get_nasa_image(api_nasa_key, folder="images"):
     url = "https://api.nasa.gov/planetary/apod"
     params = {
         "api_key": api_nasa_key,
@@ -41,7 +43,9 @@ def get_expansion_link(link):
 
 
 def main():
+    load_dotenv()
     api_nasa_key = os.environ["API_NASA_KEY"]
+    Path("images").mkdir(parents=True, exist_ok=True)
     get_nasa_image(api_nasa_key)
    
 
