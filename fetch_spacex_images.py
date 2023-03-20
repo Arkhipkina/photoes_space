@@ -15,9 +15,7 @@ def get_url_image():
     url = "https://api.spacexdata.com/v5/launches"
     response = requests.get(url)
     response.raise_for_status()
-    list_links_images=[]
-    for link in response.json():
-        list_links_images += link["links"]["flickr"]["original"]
+    list_links_images = [link["links"]["flickr"]["original"] for link in response.json()]
     return list_links_images
 
 
