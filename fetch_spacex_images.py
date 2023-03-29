@@ -1,7 +1,8 @@
-import requests
 import os.path
-from dotenv import load_dotenv
 from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
 
 def get_image(filename, url):
     response = requests.get(url)

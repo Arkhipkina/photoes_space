@@ -1,7 +1,10 @@
-import requests
 import os
 import os.path
 import datetime
+from pathlib import Path
+from pprint import pprint
+
+import requests
 from dotenv import load_dotenv
 from pathlib import Path
 from pprint import pprint

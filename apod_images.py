@@ -1,9 +1,11 @@
-import requests
 import os
 import os.path
-from dotenv import load_dotenv
-from pathlib import Path
 from urllib.parse import urlsplit, unquote
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+
 
 
 def get_nasa_image(api_nasa_key, folder="images"):
