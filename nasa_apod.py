@@ -7,7 +7,6 @@ import requests
 from dotenv import load_dotenv
 
 
-
 def get_nasa_image(api_nasa_key, folder="images"):
     url = "https://api.nasa.gov/planetary/apod"
     params = {
@@ -26,10 +25,10 @@ def get_nasa_image(api_nasa_key, folder="images"):
             continue
         file_name = f"dayimage{number}{expansion_link}"
         file_path = os.path.join(folder, file_name)
-        get_nasa_dayimage(file_path, url_images)
+        download_image(file_path, url_images)
 
 
-def get_nasa_dayimage(file_path, url_images):
+def download_image(file_path, url_images):
     response = requests.get(url_images)
     response.raise_for_status()
   

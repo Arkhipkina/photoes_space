@@ -2,12 +2,9 @@ import os
 import os.path
 import datetime
 from pathlib import Path
-from pprint import pprint
 
 import requests
 from dotenv import load_dotenv
-from pathlib import Path
-from pprint import pprint
 
 def get_epic_image(api_key, folder="images"):
     url = "https://api.nasa.gov/EPIC/api/natural/images"

@@ -5,8 +5,10 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
+from download_image import download_image
 
-def get_url_image(launch_id):
+
+def get_urls_images(launch_id):
     url = f"https://api.spacexdata.com/v5/launches/{launch_id}"
     response = requests.get(url)
     response.raise_for_status()
@@ -17,12 +19,9 @@ def get_url_image(launch_id):
 def fetch_spacex_all_launches(links_images, folder="images"):
     Path(folder).mkdir(parents=True, exist_ok=True)
     for number, link in enumerate(links_images):
-        response = requests.get(link)
-        response.raise_for_status()
         file_name = f"image{number}.jpeg"
         file_path = os.path.join(folder, file_name)
-        with open (file_path, "wb") as file:
-            file.write(response.content)
+        download_image(file_path, link)
     
 
 def main():
@@ -36,7 +35,7 @@ def main():
 
     Path("images").mkdir(parents=True, exist_ok=True)
   
-    links_images = get_url_image(launch_id)
+    links_images = get_urls_images(launch_id)
     fetch_spacex_all_launches(links_images)
 
 

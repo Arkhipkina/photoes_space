@@ -41,13 +41,13 @@ python fetch_spacex_images.py --launch_id *id запуска*
 Если Вы хотите загрузить фотографии APOD:
 
 ```python
-python apod_images.py
+python nasa_apod.py
 ```
 
 Если Вы хотите загрузить фотографии EPIC:
 
 ```python
-python epic_images.py
+python nasa_epic.py
 ```
 
 Если Вы хотите опубликовать фотографии:
