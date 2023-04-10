@@ -24,16 +24,7 @@ def get_epic_image(api_key, folder="images"):
         file_name = f"EPIC{number}.png"
         file_path = os.path.join(folder, file_name)
        
-        save_epic_image(url, file_path, params)
-
-
-def save_epic_image(url, file_path, params):
-    response = requests.get(url, params)
-    response.raise_for_status()
-    print(response.url)
-    with open (file_path, "wb") as file:
-        file.write(response.content)
-
+        download_image(file_path, url)
 
 def main():
     load_dotenv()
