@@ -6,6 +6,8 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
+from download_image import download_image
+
 
 def get_nasa_image(api_nasa_key, folder="images"):
     url = "https://api.nasa.gov/planetary/apod"
@@ -28,14 +30,6 @@ def get_nasa_image(api_nasa_key, folder="images"):
         download_image(file_path, url_images)
 
 
-def download_image(file_path, url_images):
-    response = requests.get(url_images)
-    response.raise_for_status()
-  
-    with open (file_path, "wb") as file:
-        file.write(response.content)
-
-
 def get_expansion_link(link):
     path_image = urlsplit(unquote(link)).path
     path, full_file_name = os.path.split(path_image)
@@ -49,7 +43,6 @@ def main():
     Path("images").mkdir(parents=True, exist_ok=True)
     get_nasa_image(api_nasa_key)
    
-
 
 if __name__ == "__main__":
     main()
