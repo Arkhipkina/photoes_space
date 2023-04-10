@@ -15,22 +15,23 @@ def get_random_path_image(folder="images"):
     return path_images
 
 
-def get_piblish_photoes(updater, delay_time):
+def get_piblish_photoes(updater, delay_time, chat_id):
     while True:
         path_images = get_random_path_image()
         for path_image in path_images:
             with open(path_image, "rb") as file:
                 photo=file
-                updater.bot.send_photo(chat_id="@bot_programm", photo=photo)
+                updater.bot.send_photo(chat_id, photo=photo)
             sleep(delay_time)
 
 
 def main():
     load_dotenv()
+    chat_id = os.environ["CHAT_ID"]
     tg_token = os.environ["TG_TOKEN"]
     updater = Updater(token = tg_token)
     delay_time = os.environ["DELAY_TIME"]
-    get_piblish_photoes(updater, int(delay_time))
+    get_piblish_photoes(updater, int(delay_time), chat_id)
     
 
 
