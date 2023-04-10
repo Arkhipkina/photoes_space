@@ -35,7 +35,7 @@ def main():
     chat_id = os.environ["CHAT_ID"]
     tg_token = os.environ["TG_TOKEN"]
     updater = Updater(token = tg_token)
-    delay_time = os.environ["DELAY_TIME"]
+    delay_time = os.getenv("DELAY_TIME", default=14400)
     get_piblish_photoes(updater, int(delay_time), chat_id)
     
 
