@@ -26,7 +26,7 @@ def get_epic_image(api_key, folder="images"):
         
         file_name = f"EPIC{number}.png"
         file_path = os.path.join(folder, file_name)
-        download_image(url, file_path, params)
+        download_image(file_path, url, params)
 
 
 def main():
