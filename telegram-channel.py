@@ -3,6 +3,7 @@ import os
 from time import sleep
 
 import requests
+import telegram
 from telegram.ext import Updater
 from dotenv import load_dotenv
 
@@ -16,7 +17,7 @@ def get_random_path_image(folder="images"):
     return path_images
 
 
-def get_piblish_photoes(updater, delay_time, tg_chat_id):
+def get_publish_photoes(updater, delay_time, tg_chat_id):
     while True:
         try:
             path_images = get_random_path_image()
@@ -25,9 +26,8 @@ def get_piblish_photoes(updater, delay_time, tg_chat_id):
                     photo=file
                     updater.bot.send_photo(tg_chat_id, photo=photo)
                 sleep(delay_time)
-        except requests.exceptions.ConnectionError():
+        except telegram.error.NetworkError("Нет интернета!"):
             sleep(20)
-
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
     tg_token = os.environ["TG_TOKEN"]
     updater = Updater(token = tg_token)
     delay_time = os.getenv("DELAY_TIME", default=14400)
-    get_piblish_photoes(updater, int(delay_time), tg_chat_id)
+    get_publish_photoes(updater, int(delay_time), tg_chat_id)
     
 
 
