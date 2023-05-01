@@ -22,19 +22,23 @@ def fetch_spacex_all_launches(links_images, folder="images"):
         file_name = f"image{number}.jpeg"
         file_path = os.path.join(folder, file_name)
         download_image(file_path, link)
-    
+
 
 def main():
     load_dotenv()
     parser = argparse.ArgumentParser(
         description="Загружает фотографии SpaceX"
     )
-    parser.add_argument('--launch_id', help='Id запуска', default="5eb87d42ffd86e000604b384")
+    parser.add_argument(
+        '--launch_id',
+        help='Id запуска',
+        default="5eb87d42ffd86e000604b384"
+    )
     args = parser.parse_args()
     launch_id = args.launch_id
 
     Path("images").mkdir(parents=True, exist_ok=True)
-  
+
     links_images = get_urls_images(launch_id)
     fetch_spacex_all_launches(links_images)
 

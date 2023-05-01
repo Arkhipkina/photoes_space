@@ -2,12 +2,9 @@ import random
 import os
 from time import sleep
 
-import requests
 import telegram
 from telegram.ext import Updater
 from dotenv import load_dotenv
-
-
 
 
 def get_random_path_image(folder="images"):
@@ -17,7 +14,7 @@ def get_random_path_image(folder="images"):
     return path_images
 
 
-def get_publish_photoes(updater, delay_time, tg_chat_id):
+def get_publish_photos(updater, delay_time, tg_chat_id):
     while True:
         try:
             path_images = get_random_path_image()
@@ -32,12 +29,11 @@ def get_publish_photoes(updater, delay_time, tg_chat_id):
 
 def main():
     load_dotenv()
-    tg_chat_id = os.environ["tG_CHAT_ID"]
+    tg_chat_id = os.environ["TG_CHAT_ID"]
     tg_token = os.environ["TG_TOKEN"]
     updater = Updater(token = tg_token)
     delay_time = os.getenv("DELAY_TIME", default=14400)
-    get_publish_photoes(updater, int(delay_time), tg_chat_id)
-    
+    get_publish_photos(updater, int(delay_time), tg_chat_id)
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ def get_nasa_image(api_nasa_key, folder="images"):
     }
     response = requests.get(url, params)
     response.raise_for_status()
-    
+
     for number, link in enumerate(response.json()):
         if not link["url"]:
             continue
@@ -42,7 +42,7 @@ def main():
     api_nasa_key = os.environ["API_NASA_KEY"]
     Path("images").mkdir(parents=True, exist_ok=True)
     get_nasa_image(api_nasa_key)
-   
+ 
 
 if __name__ == "__main__":
     main()
